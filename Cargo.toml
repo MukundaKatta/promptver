@@ -1,0 +1,15 @@
+[package]
+name = "promptver"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.74"
+description = "Hash and version prompt templates so eval results, cache keys, and audit logs stay stable when templates change. Whitespace-normalized SHA-256. Zero deps."
+authors = ["Mukunda Rao Katta <mukunda.vjcs6@gmail.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/MukundaKatta/promptver"
+homepage = "https://github.com/MukundaKatta/promptver"
+documentation = "https://docs.rs/promptver"
+readme = "README.md"
+keywords = ["prompt", "version", "hash", "audit", "eval"]
+categories = ["cryptography", "data-structures"]
+exclude = [".github/*", "target/*"]
