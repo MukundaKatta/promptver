@@ -56,7 +56,7 @@ fn normalize(s: &str) -> String {
         if i > 0 {
             out.push('\n');
         }
-        let stripped = line.trim_end_matches(|c: char| c == ' ' || c == '\t');
+        let stripped = line.trim_end_matches([' ', '\t']);
         out.push_str(stripped);
     }
     // Collapse runs of blank lines to a single blank line.

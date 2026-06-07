@@ -50,3 +50,35 @@ fn collapses_blank_line_runs() {
     let v2 = "line\n\n\n\n\nline";
     assert_eq!(hash(v1), hash(v2));
 }
+
+#[test]
+fn trailing_tabs_trimmed() {
+    let v1 = "alpha\nbeta";
+    let v2 = "alpha\t\t\nbeta\t";
+    assert_eq!(hash(v1), hash(v2));
+    assert!(!changed(v1, v2));
+}
+
+#[test]
+fn leading_and_trailing_blank_lines_ignored() {
+    let v1 = "content";
+    let v2 = "\n\n  \ncontent\n  \n\n";
+    assert_eq!(hash(v1), hash(v2));
+}
+
+#[test]
+fn hash_matches_normalized_sha256() {
+    // "abc\n  " normalizes to "abc"; full SHA-256("abc") is known.
+    assert_eq!(
+        hash("abc\n  "),
+        "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    );
+}
+
+#[test]
+fn changed_is_symmetric() {
+    let a = "be brief";
+    let b = "be terse";
+    assert_eq!(changed(a, b), changed(b, a));
+    assert!(!changed(a, a));
+}
